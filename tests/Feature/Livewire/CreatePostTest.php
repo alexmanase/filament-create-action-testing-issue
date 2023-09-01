@@ -6,9 +6,9 @@ use App\Models\Post;
 use function Pest\Livewire\livewire;
 
 it('can create a post', function () {
-   livewire(CreatePost::class)
+   livewire(CreatePost::class, ['name' => 'alex'])
        ->callAction('create')
        ->assertOk();
 
-   dd(Post::first());
+   expect(Post::first())->name->toBe('alex');
 });
